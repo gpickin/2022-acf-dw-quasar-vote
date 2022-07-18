@@ -18,19 +18,22 @@
 			<div
 				style="
 					background-image: url(./family_feud.jpg);
-					background-position: top center;
+					background-position: center 50px;
+					background-repeat: no-repeat;
+					background-attachment: fixed;
+					min-height: 800px;
 				"
 			>
 				<div
-					class="q-mx-auto col-12 window-height"
-					style="padding-top: 290px; max-width: 360px"
+					class="q-mx-auto col-12"
+					style="padding-top: 78px; max-width: 340px"
 				>
 					<div
 						class="q-mx-auto"
 						style="
-							margin-left: -00px;
-							max-width: 360px;
-							background-color: rgba(255, 255, 255, 0.9);
+							margin-left: -5px;
+							max-width: 340px;
+							background-color: rgba(255, 255, 255, 0.8);
 						"
 					>
 						<router-view />
@@ -78,7 +81,7 @@
 
 <script>
 	export default {
-		name: "MainLayout",
+		name: "GameLayout",
 		components: {},
 		data() {
 			return {};

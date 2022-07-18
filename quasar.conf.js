@@ -10,7 +10,7 @@
 
 const ESLintPlugin = require("eslint-webpack-plugin");
 
-module.exports = function (/* ctx */) {
+module.exports = function (ctx) {
   return {
     // https://v1.quasar.dev/quasar-cli/supporting-ts
     supportTS: false,
@@ -42,6 +42,20 @@ module.exports = function (/* ctx */) {
 
     // Full list of options: https://v1.quasar.dev/quasar-cli/quasar-conf-js#Property%3A-build
     build: {
+      env: ctx.dev
+        ? {
+            environment: "dev",
+            API: "http://127.0.0.1:54006/api/v1/",
+          }
+        : process.env.BUILDTYPE == "prod"
+        ? {
+            environment: "prod",
+            API: "http://swarm1.cloudgq.com:8004/api/v1",
+          }
+        : {
+            environment: "stg",
+            API: "http://swarm1.cloudgq.com:8004/api/v1",
+          },
       vueRouterMode: "hash", // available values: 'hash', 'history'
 
       // transpile: false,
@@ -72,7 +86,7 @@ module.exports = function (/* ctx */) {
     // Full list of options: https://v1.quasar.dev/quasar-cli/quasar-conf-js#Property%3A-devServer
     devServer: {
       https: false,
-      port: 8080,
+      port: 8082,
       open: true, // opens browser window automatically
     },
 
@@ -95,7 +109,7 @@ module.exports = function (/* ctx */) {
       // directives: [],
 
       // Quasar plugins
-      plugins: [],
+      plugins: ["Notify"],
     },
 
     // animations: 'all', // --- includes all animations
